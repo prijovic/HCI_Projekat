@@ -1,0 +1,33 @@
+﻿<Page x:Class="HCI_Projekat.controls.pages.ClientTicketsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HCI_Projekat.controls.pages"
+      xmlns:local1="clr-namespace:HCI_Projekat.controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ClientTicketsPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="10*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Column="1" Grid.Row="1" x:Name="ticketsClient" ItemsSource="{Binding Path=Tickets}" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource ResourceKey=DataGridStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Полазак" FontSize="15" MinWidth="150" Width="*" FontWeight="DemiBold" Binding="{Binding Path=ScheduleItem.DepartureTime, Converter={StaticResource DateConverter}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Од" FontSize="15" MinWidth="100" Width="*" FontWeight="DemiBold" Binding="{Binding Path=ScheduleItem.TrainLine.DeparturePlace}"></DataGridTextColumn>
+                <DataGridTextColumn Header="До" FontSize="15" MinWidth="100" Width="*" FontWeight="DemiBold" Binding="{Binding Path=ScheduleItem.TrainLine.ArrivalPlace}"></DataGridTextColumn>
+                <DataGridCheckBoxColumn  Header="Плаћено" MinWidth="95" Width="auto" Binding="{Binding Path=Paid}"></DataGridCheckBoxColumn>
+                <DataGridTextColumn Header="Цена" FontSize="15" MinWidth="60" Width="auto" Binding="{Binding Path=ScheduleItem.Price}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Време" FontSize="15" MinWidth="150" Width="*" FontWeight="ExtraLight" Binding="{Binding Path=TimeStamp, Converter={StaticResource DateConverter}}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

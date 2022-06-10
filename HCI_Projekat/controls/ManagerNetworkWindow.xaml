@@ -1,0 +1,34 @@
+﻿<Window x:Class="HCI_Projekat.controls.ManagerNetworkWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCI_Projekat.controls"
+        mc:Ignorable="d"
+        Title="Мрежни преглед линија" SizeToContent="Height" ResizeMode="NoResize" Closed="Window_Closed">
+    <Window.Background>
+        <ImageBrush ImageSource="/assets/cover_image-overlay.jpg"></ImageBrush>
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="10*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="25*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,10,0,0" FontSize="20" Foreground="{StaticResource white}" FontWeight="Bold">Мрежни преглед линија</Label>
+        <Label Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,0" FontSize="16" Foreground="{StaticResource white}" FontWeight="DemiBold">*За измену мрежног прегледа превуците нову слику на тренутну</Label>
+
+        <Image x:Name="network" Grid.Column="1" Grid.Row="3" Width="auto" HorizontalAlignment="Center" Margin="0,0,0,10" VerticalAlignment="Center" AllowDrop="True" Drop="Image_Drop">
+            <Image.Source>
+                <BitmapImage DecodePixelWidth="2000" UriSource="/assets/network_lines.jpg"></BitmapImage>
+            </Image.Source>
+        </Image>
+    </Grid>
+</Window>
