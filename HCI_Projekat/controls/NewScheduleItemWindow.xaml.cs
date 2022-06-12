@@ -129,5 +129,10 @@ namespace HCI_Projekat.controls
         {
 
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            //OnScheduleItemAdded?.Invoke(scheduleItem);
+        }
     }
 }

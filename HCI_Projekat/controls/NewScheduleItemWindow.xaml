@@ -47,7 +47,7 @@
             <TextBox Text="{Binding Price}" HorizontalAlignment="Left" FontWeight="Bold" MinWidth="190" VerticalAlignment="Center" Width="auto" Margin="15,0,10,10"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="AddButton" VerticalAlignment="Center" Margin="0,0,0,0" Style="{StaticResource ClassicButton}">Додај</Button>
+            <Button x:Name="AddButton" VerticalAlignment="Center" Margin="0,0,0,0" Style="{StaticResource ClassicButton}" Click="AddButton_Click">Додај</Button>
         </StackPanel>
     </Grid>
 </Window>

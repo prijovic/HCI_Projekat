@@ -20,11 +20,11 @@
         </Grid.ColumnDefinitions>
         <DataGrid Grid.Column="1" Grid.Row="1" x:Name="schedule" ItemsSource="{Binding ScheduleItems}" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource ResourceKey=DataGridStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyleSearchResultDetails}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Полазиште" FontSize="15" MinWidth="120" Width="*" FontWeight="DemiBold" Binding="{Binding DeparturePlace}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Полазиште" FontSize="15" MinWidth="115" Width="*" FontWeight="DemiBold" Binding="{Binding DeparturePlace}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Одредиште" FontSize="15" MinWidth="120" Width="*" FontWeight="DemiBold" Binding="{Binding ArrivalPlace}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Полазак" FontSize="15" MinWidth="172" Width="*" FontWeight="DemiBold" Binding="{Binding DepartureTime, Converter={StaticResource DateConverter}}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Трајање пута" FontSize="15" MinWidth="120" Width="*" FontWeight="DemiBold" Binding="{Binding TripDuration, Converter={StaticResource TimeSpanConverter}}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Цена" FontSize="15" MinWidth="10" Width="*" FontWeight="DemiBold" Binding="{Binding Price}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Полазак" FontSize="15" MinWidth="120" Width="*" FontWeight="DemiBold" Binding="{Binding DepartureTime, Converter={StaticResource DateConverter}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Трајање" FontSize="15" MinWidth="90" Width="*" FontWeight="DemiBold" Binding="{Binding TripDuration, Converter={StaticResource TimeSpanConverter}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Цена" FontSize="15" MinWidth="60" Width="*" FontWeight="DemiBold" Binding="{Binding Price}"></DataGridTextColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
