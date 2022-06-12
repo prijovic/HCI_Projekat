@@ -60,6 +60,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="ThinkSharp.FeatureTour, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Thinksharp.FeatureTour.2.1.0\lib\net40\ThinkSharp.FeatureTour.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -140,6 +143,7 @@
     <Compile Include="services\TrainLineService.cs" />
     <Compile Include="services\TrainService.cs" />
     <Compile Include="services\UserService.cs" />
+    <Compile Include="touring\ElementID.cs" />
     <Page Include="controls\ManagerNetworkWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -272,6 +276,7 @@
   <ItemGroup>
     <Resource Include="assets\network_lines.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
