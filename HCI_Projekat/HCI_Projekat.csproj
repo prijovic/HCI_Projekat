@@ -84,6 +84,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="controls\ClientCommands.cs" />
+    <Compile Include="controls\ClientNetworkWindow.xaml.cs">
+      <DependentUpon>ClientNetworkWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="controls\DateConverter.cs" />
     <Compile Include="controls\ManagerCommands.cs" />
     <Compile Include="controls\ManagerNetworkWindow.xaml.cs">
@@ -104,6 +108,9 @@
     <Compile Include="controls\pages\ClientPage.xaml.cs">
       <DependentUpon>ClientPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="controls\pages\ClientSearchResultPage.xaml.cs">
+      <DependentUpon>ClientSearchResultPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="controls\pages\ClientTicketsPage.xaml.cs">
       <DependentUpon>ClientTicketsPage.xaml</DependentUpon>
     </Compile>
@@ -122,9 +129,6 @@
     <Compile Include="controls\pages\ManagerTrains.xaml.cs">
       <DependentUpon>ManagerTrains.xaml</DependentUpon>
     </Compile>
-    <Compile Include="controls\pages\TrainLinesNetworkPage.xaml.cs">
-      <DependentUpon>TrainLinesNetworkPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="controls\StationInputDialog.xaml.cs">
       <DependentUpon>StationInputDialog.xaml</DependentUpon>
     </Compile>
@@ -133,13 +137,19 @@
     <Compile Include="controls\TimeSpanConverter.cs" />
     <Compile Include="controls\TrainToStringConverter.cs" />
     <Compile Include="controls\YesNoConverter.cs" />
+    <Compile Include="model\SearchResultItem.cs" />
     <Compile Include="model\Station.cs" />
     <Compile Include="model\StationArrival.cs" />
     <Compile Include="services\ScheduleItemService.cs" />
+    <Compile Include="model\SearchLine.cs" />
     <Compile Include="services\TicketService.cs" />
     <Compile Include="services\TrainLineService.cs" />
     <Compile Include="services\TrainService.cs" />
     <Compile Include="services\UserService.cs" />
+    <Page Include="controls\ClientNetworkWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="controls\ManagerNetworkWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -161,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="controls\pages\ClientPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\pages\ClientSearchResultPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,10 +207,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="controls\pages\RegistrationPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="controls\pages\TrainLinesNetworkPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

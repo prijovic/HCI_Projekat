@@ -26,6 +26,9 @@ namespace HCI_Projekat.controls
         public delegate void OnClose();
         public event OnClose OnCloseHandler;
 
+        public delegate void OnScheduleItemAddedHandler(ScheduleItem scheduleItem);
+        public event OnScheduleItemAddedHandler OnScheduleItemAdded;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string info)
         {

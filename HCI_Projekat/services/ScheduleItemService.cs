@@ -19,6 +19,25 @@ namespace HCI_Projekat.services
             ScheduleItems.Add(scheduleItem1);
         }
 
+        public SortedSet<ScheduleItem> GetSchedules(SearchLine searchLine, DateTime date)
+        {
+            SortedSet<ScheduleItem> schedule = new SortedSet<ScheduleItem>();
+            foreach (ScheduleItem si in ScheduleItems)
+            {
+                if (si.DepartureTime.Date == date.Date)
+                {
+                    if (si.ConstainsStation(searchLine.DeparturePlace) && si.ConstainsStation(searchLine.ArrivalPlace))
+                    {
+                        if (si.IsStationAfter(searchLine.DeparturePlace, searchLine.ArrivalPlace))
+                        {
+                            schedule.Add(si);
+                        }
+                    }
+                }
+            }
+            return schedule;
+        }
+
         public void RemoveScheduleItem(ScheduleItem scheduleItem)
         {
             ScheduleItems.Remove(scheduleItem);
@@ -80,6 +99,11 @@ namespace HCI_Projekat.services
                 }
             }
             return 0;
+        }
+
+        internal void AddScheduleItem(ScheduleItem scheduleItem)
+        {
+            ScheduleItems.Add(scheduleItem);
         }
     }
 }

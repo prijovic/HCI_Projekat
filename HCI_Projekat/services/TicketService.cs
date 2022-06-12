@@ -84,5 +84,29 @@ namespace HCI_Projekat.services
                     return null;
             }
         }
+
+        internal static Dictionary<string, double> GetTicketLineGraphData(TrainLine trainLine)
+        {
+            Dictionary<string, double> graphData = new Dictionary<string, double>();
+            for (int i = 0; i < 12; i++)
+            {
+                DateTime someDate = DateTime.Now.AddMonths(-i);
+                graphData[TranslateMonth(someDate.Month)] = CountLineTicketsInMonth(trainLine, someDate.Month, someDate.Year);
+            }
+            return graphData;
+        }
+
+        public static int CountLineTicketsInMonth(TrainLine trainLine, int month, int year)
+        {
+            int counter = 0;
+            Tickets.ForEach(t =>
+            {
+                if (t.TimeStamp.Month == month && t.TimeStamp.Year == year && t.ScheduleItem.TrainLine == trainLine)
+                {
+                    counter++;
+                }
+            });
+            return counter;
+        }
     }
 }

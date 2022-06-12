@@ -27,6 +27,7 @@ namespace HCI_Projekat.controls.pages
         ScheduleItemService scheduleItemService;
         TrainService trainService;
         string Username { get; set; }
+        private bool NetworkOpened { get; set; } = false;
 
         public ClientPage(ref UserService userService, ref TrainLineService trainLineService, ref TicketService ticketService, ref ScheduleItemService scheduleItemService, ref TrainService trainService, string username)
         {
@@ -37,22 +38,55 @@ namespace HCI_Projekat.controls.pages
             this.trainService = trainService;
             Username = username;
             InitializeComponent();
-            clientPage.Content = new ClientLinesPage(ref trainLineService);
+            clientPage.Content = new ClientLinesPage(ref trainLineService, ref scheduleItemService);
         }
 
-        private void Logout_Click(object sender, RoutedEventArgs e)
+        private void Tickets_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+
+        }
+
+        private void Tickets_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+
+        private void Logout_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = (Username != null);
+        }
+
+        private void Logout_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             ((MainWindow)App.Current.MainWindow).mainPage.Content = new LoginPage(ref userService, ref trainLineService, ref ticketService, ref scheduleItemService, ref trainService);
         }
 
-        private void Tickets_Click(object sender, RoutedEventArgs e)
+        private void Network_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            clientPage.Content = new ClientTicketsPage(ref ticketService, Username);
+            e.CanExecute = !NetworkOpened;
         }
 
-        private void Lines_Click(object sender, RoutedEventArgs e)
+        private void Network_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            clientPage.Content = new ClientLinesPage(ref trainLineService);
+            ClientNetworkWindow managerNetworkWindow = new ClientNetworkWindow();
+            managerNetworkWindow.ClosedWindow += CloseNetwork;
+            managerNetworkWindow.Show();
+            NetworkOpened = true;
+        }
+
+        private void Home_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Home_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            clientPage.Content = new ClientLinesPage(ref trainLineService, ref scheduleItemService);
+        }
+
+        private void CloseNetwork()
+        {
+            NetworkOpened = false;
         }
     }
 }

@@ -11,25 +11,25 @@
     <Page.Background>
         <ImageBrush ImageSource="/assets/cover_image-overlay.jpg"></ImageBrush>
     </Page.Background>
-    <Grid>
-        <Grid.ColumnDefinitions>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*">
-            </RowDefinition>
-            <RowDefinition Height="17*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Rectangle Grid.Row="0" Fill="{StaticResource white}"></Rectangle>
-        <Image Grid.Row="0" Margin="10, 1, 0, 1" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Image.Source>
-                <BitmapImage DecodePixelHeight="50" UriSource="..\assets\logo_big.png"/>
-            </Image.Source>
-        </Image>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-            <Button HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource NavbarButton}" Click="Lines_Click">Ред вожње</Button>
-            <Button HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center" Style="{StaticResource NavbarButton}" Click="Tickets_Click">Преглед карата</Button>
-            <Button HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource NavbarButton}" Click="Logout_Click">Одјави се</Button>
-        </StackPanel>
-        <Frame Grid.Row="1" x:Name="clientPage" NavigationUIVisibility="Hidden"></Frame>
-    </Grid>
+    <Page.CommandBindings>
+        <CommandBinding Command="cmd:ClientCommands.Tickets" CanExecute="Tickets_CanExecute" Executed="Tickets_Executed"></CommandBinding>
+        <CommandBinding Command="cmd:ClientCommands.Logout" CanExecute="Logout_CanExecute" Executed="Logout_Executed"></CommandBinding>
+        <CommandBinding Command="cmd:ClientCommands.Network" CanExecute="Network_CanExecute" Executed="Network_Executed"></CommandBinding>
+        <CommandBinding Command="cmd:ClientCommands.Home" CanExecute="Home_CanExecute" Executed="Home_Executed"></CommandBinding>
+    </Page.CommandBindings>
+    <DockPanel>
+        <Menu DockPanel.Dock ="Top" Style="{DynamicResource MenuStyle1}">
+            <MenuItem Name="start" Header="Систем">
+                <MenuItem Header="Почетна страница" Command="cmd:ClientCommands.Home">
+                </MenuItem>
+                <MenuItem Header="Мрежа линија" Command="cmd:ClientCommands.Network"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Налог">
+                <MenuItem Header="Карте" Command="cmd:ClientCommands.Tickets"></MenuItem>
+                <MenuItem Header="Одјави се" Command="cmd:ClientCommands.Logout"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Помоћ"></MenuItem>
+        </Menu>
+        <Frame DockPanel.Dock="Left" x:Name="clientPage" NavigationUIVisibility="Hidden"></Frame>
+    </DockPanel>
 </Page>

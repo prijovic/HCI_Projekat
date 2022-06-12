@@ -44,7 +44,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Button x:Name="clearButton" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,7,0" VerticalAlignment="Center" Style="{StaticResource ClassicButton}" Click="Clear_Click">Обриши</Button>
-                    <Button x:Name="searchButton" Grid.Column="1" HorizontalAlignment="Left" Margin="8,0,0,0" VerticalAlignment="Center"  Style="{StaticResource RedButton}">Претражи</Button>
+                    <Button x:Name="searchButton" Grid.Column="1" HorizontalAlignment="Left" Margin="8,0,0,0" VerticalAlignment="Center"  Style="{StaticResource RedButton}" Click="SearchButton_Click">Претражи</Button>
                 </Grid>
             </StackPanel>
         </Grid>
