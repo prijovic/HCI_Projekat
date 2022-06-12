@@ -38,17 +38,17 @@ namespace HCI_Projekat.controls.pages
             this.trainService = trainService;
             Username = username;
             InitializeComponent();
-            clientPage.Content = new ClientLinesPage(ref trainLineService, ref scheduleItemService);
+            clientPage.Content = new ClientLinesPage(ref ticketService, ref trainLineService, ref scheduleItemService, Username);
         }
 
         private void Tickets_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-
+            e.CanExecute = true;
         }
 
         private void Tickets_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-
+            clientPage.Content = new ClientTicketsPage(ref ticketService, Username);
         }
 
         private void Logout_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -81,7 +81,7 @@ namespace HCI_Projekat.controls.pages
 
         private void Home_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            clientPage.Content = new ClientLinesPage(ref trainLineService, ref scheduleItemService);
+            clientPage.Content = new ClientLinesPage(ref ticketService,ref trainLineService, ref scheduleItemService, Username);
         }
 
         private void CloseNetwork()

@@ -20,15 +20,22 @@
         </Grid.ColumnDefinitions>
         <DataGrid Grid.Column="1" Grid.Row="1" x:Name="schedule" ItemsSource="{Binding ScheduleItems}" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource ResourceKey=DataGridStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyleSearchResultDetails}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Полазиште" FontSize="20" MinWidth="120" Width="*" FontWeight="Bold" Binding="{Binding DeparturePlace}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Одредиште" FontSize="20" MinWidth="120" Width="*" FontWeight="Bold" Binding="{Binding ArrivalPlace}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Полазак" FontSize="20" MinWidth="172" Width="*" FontWeight="Bold" Binding="{Binding DepartureTime, Converter={StaticResource DateConverter}}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Трајање пута" FontSize="20" MinWidth="120" Width="*" FontWeight="Bold" Binding="{Binding TripDuration, Converter={StaticResource TimeSpanConverter}}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Цена" FontSize="20" MinWidth="10" Width="*" FontWeight="Bold" Binding="{Binding Price}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Полазиште" FontSize="15" MinWidth="120" Width="*" FontWeight="DemiBold" Binding="{Binding DeparturePlace}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Одредиште" FontSize="15" MinWidth="120" Width="*" FontWeight="DemiBold" Binding="{Binding ArrivalPlace}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Полазак" FontSize="15" MinWidth="172" Width="*" FontWeight="DemiBold" Binding="{Binding DepartureTime, Converter={StaticResource DateConverter}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Трајање пута" FontSize="15" MinWidth="120" Width="*" FontWeight="DemiBold" Binding="{Binding TripDuration, Converter={StaticResource TimeSpanConverter}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Цена" FontSize="15" MinWidth="10" Width="*" FontWeight="DemiBold" Binding="{Binding Price}"></DataGridTextColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Margin="5" Name="reserveButton" Content="Резервиши" Style="{StaticResource ClassicButton}" Click="ReserveButton_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Margin="5" Name="buyButton" Content="Купи" Style="{StaticResource ClassicButton}" Click="BuyButton_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

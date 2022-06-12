@@ -1,4 +1,5 @@
 ﻿using HCI_Projekat.model;
+using HCI_Projekat.services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,10 +25,14 @@ namespace HCI_Projekat.controls.pages
     public partial class ClientSearchResultPage : Page
     {
         public ObservableCollection<SearchResultItem> ScheduleItems { get; set; }
+        private string Username { get; set; }
+        private TicketService ticketService;
 
-        public ClientSearchResultPage(SortedSet<ScheduleItem> scheduleItems, SearchLine searchLine)
+        public ClientSearchResultPage(ref TicketService ticketService, SortedSet<ScheduleItem> scheduleItems, SearchLine searchLine, string username)
         {
             List<SearchResultItem> searchResults = new List<SearchResultItem>();
+            Username = username;
+            this.ticketService = ticketService;
             foreach (ScheduleItem si in scheduleItems)
             {
                 searchResults.Add(new SearchResultItem(si, searchLine));
@@ -41,11 +46,24 @@ namespace HCI_Projekat.controls.pages
         {
             try
             {
-                DataRowView dataRowView = (DataRowView)((Button)e.Source).DataContext;
-                String ProductName = dataRowView[1].ToString();
-                String ProductDescription = dataRowView[2].ToString();
-                MessageBox.Show("You Clicked : " + ProductName + "\r\nDescription : " + ProductDescription);
-                //This is the code which will show the button click row data. Thank you.
+                SearchResultItem searchResult = (SearchResultItem)((Button)e.Source).DataContext;
+                Ticket ticket = new Ticket(UserService.GetUserByUsernameS(Username), DateTime.Now, searchResult, false);
+                ticketService.AddTicket(ticket);
+                MessageBox.Show("Успешно сте резервисали карту.", "Успешна резервација", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void BuyButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SearchResultItem searchResult = (SearchResultItem)((Button)e.Source).DataContext;
+                Ticket ticket = new Ticket(UserService.GetUserByUsernameS(Username), DateTime.Now, searchResult, true);
+                ticketService.AddTicket(ticket);
+                MessageBox.Show("Успешно сте купили карту.", "Успешна куповина", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {

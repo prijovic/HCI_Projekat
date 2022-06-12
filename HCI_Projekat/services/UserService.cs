@@ -20,6 +20,18 @@ namespace HCI_Projekat.services
             Users.Add(user2);
         }
 
+        public static User GetUserByUsernameS(string username)
+        {
+            foreach (User user in Users)
+            {
+                if (user.Username == username)
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
+
         public string GetUserType(string username)
         {
             return GetUserByUsername(username).UserType;

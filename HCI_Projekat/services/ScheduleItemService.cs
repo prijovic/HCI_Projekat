@@ -13,9 +13,9 @@ namespace HCI_Projekat.services
 
         public ScheduleItemService()
         {
-            DateTime[] arrivals = { DateTime.Now.AddMinutes(30), DateTime.Now.AddMinutes(45) };
+            DateTime[] arrivals = { DateTime.Now.AddMinutes(10).AddMinutes(30), DateTime.Now.AddMinutes(10).AddMinutes(45) };
             double[] prices = { 450, 750 };
-            ScheduleItem scheduleItem1 = new ScheduleItem(TrainLineService.TrainLines[0], DateTime.Now, DateTime.Now.AddHours(1), arrivals, TrainService.Trains[2], 900, prices);
+            ScheduleItem scheduleItem1 = new ScheduleItem(TrainLineService.TrainLines[0], DateTime.Now.AddMinutes(10), DateTime.Now.AddMinutes(10).AddHours(1), arrivals, TrainService.Trains[2], 900, prices);
             ScheduleItems.Add(scheduleItem1);
         }
 

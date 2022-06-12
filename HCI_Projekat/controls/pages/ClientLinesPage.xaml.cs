@@ -27,16 +27,20 @@ namespace HCI_Projekat.controls.pages
         DateTime oneYearAhead = DateTime.Now.AddYears(1);
         TrainLineService trainLineService;
         ScheduleItemService scheduleItemService;
+        TicketService ticketService;
         SortedSet<string> stations = new SortedSet<string>();
+        string username;
 
         public string DepartureStation { get; set; }
         public string ArrivalStation { get; set; }
         public DateTime DepartureDate { get; set; }
 
-        public ClientLinesPage(ref TrainLineService trainLineService, ref ScheduleItemService scheduleItemService)
+        public ClientLinesPage(ref TicketService ticketService, ref TrainLineService trainLineService, ref ScheduleItemService scheduleItemService, string username)
         {
             this.trainLineService = trainLineService;
             this.scheduleItemService = scheduleItemService;
+            this.ticketService = ticketService;
+            this.username = username;
             DepartureDate = today;
             InitializeComponent();
             this.DataContext = this;
@@ -91,7 +95,7 @@ namespace HCI_Projekat.controls.pages
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             SearchLine searchLine = new SearchLine(DepartureStation, ArrivalStation);
-            ((ClientPage)(((MainWindow)App.Current.MainWindow).mainPage).Content).clientPage.Content = new ClientSearchResultPage(scheduleItemService.GetSchedules(searchLine, DepartureDate), searchLine);
+            ((ClientPage)(((MainWindow)App.Current.MainWindow).mainPage).Content).clientPage.Content = new ClientSearchResultPage(ref ticketService, scheduleItemService.GetSchedules(searchLine, DepartureDate), searchLine, username);
         }
     }
 }
