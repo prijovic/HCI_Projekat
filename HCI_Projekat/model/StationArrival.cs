@@ -41,7 +41,6 @@ namespace HCI_Projekat.model
         private Station _station;
         private DateTime _time;
         private double _price;
-        private Station s;
 
         public double Price
         {

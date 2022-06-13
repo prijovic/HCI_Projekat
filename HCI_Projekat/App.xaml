@@ -521,7 +521,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Margin="5" FontSize="15"><Run FontWeight="Light" Text="{Binding TimeStamp}"/><LineBreak/><LineBreak/><Run Text="{Binding ScheduleItem.TrainLine.DeparturePlace}"/><Run Text=" "/><Run Text="--&gt;"/><Run Text=" "/><Run Text="{Binding ScheduleItem.TrainLine.ArrivalPlace}"/><LineBreak/><Run Text="Трајање путовања:"/><Run Text=" "/><Run Text="{Binding ScheduleItem.TripDuration, Converter={StaticResource TimeSpanConverter}}"/><LineBreak/><Run Text="Цена:"/><Run Text=" "/><Run Text="{Binding ScheduleItem.Price}"/><Run Text=" "/><Run Text="РСД"/><LineBreak/><Run Text="Плаћена:"/><Run Text=" "/><Run Text="{Binding Paid, Converter={StaticResource YesNoConverter}}"/></TextBlock>
+                    <TextBlock Margin="5" FontSize="15"><Run FontWeight="Light" Text="{Binding TimeStamp, Converter={StaticResource DateConverter}}"/><LineBreak/><LineBreak/><Run Text="{Binding SearchResultItem.DeparturePlace.Name}"/><Run Text=" "/><Run Text="--&gt;"/><Run Text=" "/><Run Text="{Binding SearchResultItem.ArrivalPlace.Name}"/><LineBreak/><Run Text="Трајање путовања:"/><Run Text=" "/><Run Text="{Binding SearchResultItem.TripDuration, Converter={StaticResource TimeSpanConverter}}"/><LineBreak/><Run Text="Цена:"/><Run Text=" "/><Run Text="{Binding SearchResultItem.Price}"/><Run Text=" "/><Run Text="РСД"/><LineBreak/><Run Text="Плаћена:"/><Run Text=" "/><Run Text="{Binding Paid, Converter={StaticResource YesNoConverter}}"/></TextBlock>
                     <TextBlock Grid.Column="1" Margin="5" FontSize="15"><Run Text="{Binding ScheduleItem.StationsAndArrivals, Converter={StaticResource StationsToStringConverter}, Mode=OneWay}"/></TextBlock>
                 </Grid>
             </Border>
@@ -631,6 +631,61 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Margin="10" FontWeight="Bold" FontSize="18" HorizontalAlignment="Left"><Run Text="Станице:"/><LineBreak/><LineBreak/><Run Text="{Binding Arrivals, Converter={StaticResource StationsToStringConverter}}"/></TextBlock>
                     <TextBlock Grid.Column="1" Margin="10" FontWeight="Bold" FontSize="18" HorizontalAlignment="Left"><Run Text="Капацитет:"/><Run Text=" "/><Run Text="{Binding Train.Capacity}"/></TextBlock>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <Style x:Key="DataGridRowStyleSearchResultDetails" TargetType="{x:Type DataGridRow}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+            <Setter Property="MinHeight" Value="30"/>
+            <Setter Property="ValidationErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <TextBlock Foreground="Red" Margin="2,0,0,0" Text="!" VerticalAlignment="Center"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridRow}">
+                        <Border x:Name="DGR_Border" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <SelectiveScrollingGrid>
+                                <SelectiveScrollingGrid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </SelectiveScrollingGrid.ColumnDefinitions>
+                                <SelectiveScrollingGrid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </SelectiveScrollingGrid.RowDefinitions>
+                                <DataGridCellsPresenter Grid.Column="1" ItemsPanel="{TemplateBinding ItemsPanel}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                <DataGridDetailsPresenter ContentTemplate="{DynamicResource RowSearchResultDetailsTemplate}" Grid.Column="1" Grid.Row="1" SelectiveScrollingGrid.SelectiveScrollingOrientation="{Binding AreRowDetailsFrozen, ConverterParameter={x:Static SelectiveScrollingOrientation.Vertical}, Converter={x:Static DataGrid.RowDetailsScrollingConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Visibility="{TemplateBinding DetailsVisibility}"/>
+                                <DataGridRowHeader Grid.RowSpan="2" SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Row}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                            </SelectiveScrollingGrid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsNewItem" Value="True">
+                    <Setter Property="Margin" Value="{Binding NewItemMargin, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="DetailsVisibility" Value="Visible"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <DataTemplate x:Key="RowSearchResultDetailsTemplate">
+            <Border Margin="5">
+                <Grid x:Name="rowDetailsTemplateGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Margin="10" FontWeight="Bold" FontSize="18" HorizontalAlignment="Left"><Run Text="Станице:"/><LineBreak/><LineBreak/><Run Text="{Binding StationArrivals, Converter={StaticResource StationsToStringConverter}}"/></TextBlock>
                 </Grid>
             </Border>
         </DataTemplate>

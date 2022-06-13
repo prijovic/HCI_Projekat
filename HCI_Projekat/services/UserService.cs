@@ -14,10 +14,22 @@ namespace HCI_Projekat.services
 
         public UserService()
         {
-            User user = new User("Uros", "Prijovic", "admin", "admin", UserType.Manager);
-            Users.Add(user);
-            User client = new User("Ana", "Stanic", "korisnik", "korisnik", UserType.Client);
-            Users.Add(client);
+            User user1 = new User("Uros", "Prijovic", "admin", "admin", UserType.Manager);
+            User user2 = new User("John", "Doe", "doe", "doe", UserType.Client);
+            Users.Add(user1);
+            Users.Add(user2);
+        }
+
+        public static User GetUserByUsernameS(string username)
+        {
+            foreach (User user in Users)
+            {
+                if (user.Username == username)
+                {
+                    return user;
+                }
+            }
+            return null;
         }
 
         public string GetUserType(string username)
