@@ -136,6 +136,7 @@
     <Compile Include="controls\TimeSpanConverter.cs" />
     <Compile Include="controls\TrainToStringConverter.cs" />
     <Compile Include="controls\YesNoConverter.cs" />
+    <Compile Include="CustomTourViewModel.cs" />
     <Compile Include="model\Station.cs" />
     <Compile Include="model\StationArrival.cs" />
     <Compile Include="services\ScheduleItemService.cs" />

@@ -133,7 +133,7 @@ namespace HCI_Projekat.controls
                 ShowNextButtonDefault = true,
                 Steps = new[]
                 {
-                    new Step(ElementID.TextBoxCode, "Унесите шифру линије", "Нпр. BGNSS"),
+                    new Step(ElementID.TextBoxCode, "Унесите шифру линије", "Нпр. \"BGNSS\""),
                     new Step(ElementID.TextBoxDeparturePlace, "Унесите полазиште", "Нпр. Београд"),
                     new Step(ElementID.TextBoxArrivalPlace, "Унесите одредиште", "Нпр. Нови Сад"),
                     new Step(ElementID.BtnAddNewStation, "Додај станицу", "Притисните дугме уколико линија није директна него желите да додате станицу."),
@@ -148,6 +148,7 @@ namespace HCI_Projekat.controls
 
         private void Btn_Train_Line_Tutorial_Click(object sender, RoutedEventArgs e)
         {
+            FeatureTour.SetViewModelFactoryMethod(tourRun => new CustomTourViewModel(tourRun));
             stationInputDialog = new StationInputDialog();
             var navigator = FeatureTour.GetNavigator();
 

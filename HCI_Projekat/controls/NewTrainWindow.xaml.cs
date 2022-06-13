@@ -68,7 +68,7 @@ namespace HCI_Projekat.controls
                 ShowNextButtonDefault = true,
                 Steps = new[]
                 {
-                    new Step(ElementID.TextBoxTrainCode, "Унесите шифру воза", "Нпр. AF345"),
+                    new Step(ElementID.TextBoxTrainCode, "Унесите шифру воза", "Нпр. \"AF345\""),
                     new Step(ElementID.TextBoxTrainName, "Унесите назив воза", "Нпр. \"Regio1\""),
                     new Step(ElementID.TextBoxTrainCapacity, "Унесите капацитет воза", "Нпр. 200"),
                     new Step(ElementID.BtnAddNewTrain, "Додај воз", "Притисните дугме да додате воз..")
@@ -79,6 +79,7 @@ namespace HCI_Projekat.controls
 
         private void Btn_Train_Tutorial_Click(object sender, RoutedEventArgs e)
         {
+            FeatureTour.SetViewModelFactoryMethod(tourRun => new CustomTourViewModel(tourRun));
             var navigator = FeatureTour.GetNavigator();
 
             navigator.OnStepEntered(ElementID.TextBoxTrainCode).Execute(s => TextTrainCode.Focus());

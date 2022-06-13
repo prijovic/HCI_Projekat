@@ -16,6 +16,8 @@ namespace HCI_Projekat.services
         {
             User user = new User("Uros", "Prijovic", "admin", "admin", UserType.Manager);
             Users.Add(user);
+            User client = new User("Ana", "Stanic", "korisnik", "korisnik", UserType.Client);
+            Users.Add(client);
         }
 
         public string GetUserType(string username)

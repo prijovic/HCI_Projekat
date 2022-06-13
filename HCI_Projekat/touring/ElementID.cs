@@ -20,5 +20,15 @@ namespace HCI_Projekat.touring
         public static readonly string TextBoxTrainName = "TextBoxTrainName";
         public static readonly string TextBoxTrainCapacity = "TextBoxTrainCapacity";
         public static readonly string BtnAddNewTrain = "BtnAddNewTrain";
+
+        public static readonly string DepartureDateTime = "DepartureDateTime";
+        public static readonly string ArrivalDateTime = "ArrivalDateTime";
+        public static readonly string TextBoxTotalPrice = "TextBoxTotalPrice";
+        public static readonly string ComboBoxLine = "ComboBoxLine";
+        public static readonly string ComboBoxTrain = "ComboBoxTrain";
+        public static readonly string ComboBoxStation = "ComboBoxStation";
+        public static readonly string ArrivalStationTime = "ArrivalStationTime";
+        public static readonly string TextBoxPartialPrice = "TextBoxPartialPrice";
+        public static readonly string BtnAddScheduleItem = "BtnAddScheduleItem";
     }
 }
