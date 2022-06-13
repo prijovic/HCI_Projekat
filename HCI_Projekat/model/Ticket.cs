@@ -25,12 +25,14 @@ namespace HCI_Projekat.model
             return TimeStamp.CompareTo(other.TimeStamp);
         }
 
-        public Ticket(User client, DateTime timeStamp, SearchResultItem searchResultItem, bool paid)
+        public Ticket(User client, DateTime timeStamp, ScheduleItem scheduleItem, Station departurePlace, Station arrivalPlace, bool paid)
         {
             _client = client;
             _timeStamp = timeStamp;
-            _searchResultItem = searchResultItem;
+            _scheduleItem = scheduleItem;
             _paid = paid;
+            _arrivalPlace = arrivalPlace;
+            _departurePlace = departurePlace;
         }
 
         public Ticket(DateTime timeStamp)
@@ -40,7 +42,7 @@ namespace HCI_Projekat.model
 
         private User _client;
         private DateTime _timeStamp;
-        private SearchResultItem _searchResultItem;
+        private ScheduleItem _scheduleItem;
         private Station _departurePlace;
         private Station _arrivalPlace;
         private bool _paid;
@@ -109,18 +111,18 @@ namespace HCI_Projekat.model
             }
         }
 
-        public SearchResultItem SearchResultItem
+        public ScheduleItem ScheduleItem
         {
             get
             {
-                return _searchResultItem;
+                return _scheduleItem;
             }
             set
             {
-                if (value != _searchResultItem)
+                if (value != _scheduleItem)
                 {
-                    _searchResultItem = value;
-                    OnPropertyChanged("SearchResultItem");
+                    _scheduleItem = value;
+                    OnPropertyChanged("ScheduleItem");
                 }
             }
         }

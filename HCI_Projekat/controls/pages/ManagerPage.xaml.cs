@@ -108,5 +108,25 @@ namespace HCI_Projekat.controls.pages
         {
             managerPage.Content = new ManagerHomePage();
         }
+
+        private void TicketsMonth_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void TicketsMonth_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Console.Beep();
+        }
+
+        private void TicketsRide_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void TicketsRide_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Console.WriteLine("Karteeee");
+        }
     }
 }

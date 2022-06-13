@@ -20,7 +20,7 @@ namespace HCI_Projekat.services
             SortedSet<Ticket> usersTickets = new SortedSet<Ticket>();
             foreach (Ticket ticket in Tickets)
             {
-                if (ticket.Client.Username == username && ticket.SearchResultItem.ScheduleItem.DepartureTime >= DateTime.Now)
+                if (ticket.Client.Username == username)
                 {
                     usersTickets.Add(ticket);
                 }
@@ -83,35 +83,6 @@ namespace HCI_Projekat.services
                 default:
                     return null;
             }
-        }
-
-        internal void AddTicket(Ticket ticket)
-        {
-            Tickets.Add(ticket);
-        }
-
-        internal static Dictionary<string, double> GetTicketLineGraphData(TrainLine trainLine)
-        {
-            Dictionary<string, double> graphData = new Dictionary<string, double>();
-            for (int i = 0; i < 12; i++)
-            {
-                DateTime someDate = DateTime.Now.AddMonths(-i);
-                graphData[TranslateMonth(someDate.Month)] = CountLineTicketsInMonth(trainLine, someDate.Month, someDate.Year);
-            }
-            return graphData;
-        }
-
-        public static int CountLineTicketsInMonth(TrainLine trainLine, int month, int year)
-        {
-            int counter = 0;
-            Tickets.ForEach(t =>
-            {
-                if (t.TimeStamp.Month == month && t.TimeStamp.Year == year && t.SearchResultItem.ScheduleItem.TrainLine == trainLine)
-                {
-                    counter++;
-                }
-            });
-            return counter;
         }
     }
 }

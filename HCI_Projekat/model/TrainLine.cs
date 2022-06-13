@@ -24,20 +24,6 @@ namespace HCI_Projekat.model
         private ObservableCollection<Station> _lineStations;
         public List<Station> Stations { get; set; } = new List<Station>();
 
-        internal Station GetStationByName(string name)
-        {
-            if (DeparturePlace.Name == name) { return DeparturePlace; }
-            if (ArrivalPlace.Name == name) { return ArrivalPlace; }
-            foreach (Station station in Stations)
-            {
-                if (station.Name == name)
-                {
-                    return station;
-                }
-            }
-            return null;
-        }
-
         public TrainLine(string code, string departurePlace, string arrivalPlace, string[] stations)
         {
             this._code = code;
@@ -148,45 +134,6 @@ namespace HCI_Projekat.model
         public override string ToString()
         {
             return $"{DeparturePlace}-{ArrivalPlace} ({Stations.Count})";
-        }
-
-        internal bool ContainsStation(Station station)
-        {
-            if (DeparturePlace.Name == station.Name) return true;
-            if (ArrivalPlace.Name == station.Name) return true;
-            foreach (Station s in Stations)
-            {
-                if (s.Name == station.Name)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        internal bool IsStationAfter(Station s1, Station s2)
-        {
-            if (s1.Name == DeparturePlace.Name && s2.Name != s1.Name)
-            {
-                return true;
-            }
-            if (s2.Name ==ArrivalPlace.Name && s2.Name != s1.Name)
-            {
-                return true;
-            }
-            return GetIndexOfStationByName(s1) < GetIndexOfStationByName(s2);
-        }
-
-        internal int GetIndexOfStationByName(Station station)
-        {
-            foreach (Station s in Stations)
-            {
-               if (s.Name == station.Name)
-                {
-                    return Stations.IndexOf(s);
-                }
-            }
-            return -1;
         }
     }
 }

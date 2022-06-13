@@ -21,11 +21,11 @@
         </Grid.ColumnDefinitions>
         <DataGrid Grid.Column="1" Grid.Row="1" x:Name="ticketsClient" ItemsSource="{Binding Path=Tickets}" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource ResourceKey=DataGridStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Полазак" FontSize="15" MinWidth="150" Width="*" FontWeight="DemiBold" Binding="{Binding Path=SearchResultItem.DepartureTime, Converter={StaticResource DateConverter}}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Од" FontSize="15" MinWidth="100" Width="*" FontWeight="DemiBold" Binding="{Binding Path=SearchResultItem.DeparturePlace}"></DataGridTextColumn>
-                <DataGridTextColumn Header="До" FontSize="15" MinWidth="100" Width="*" FontWeight="DemiBold" Binding="{Binding Path=SearchResultItem.ArrivalPlace}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Полазак" FontSize="15" MinWidth="150" Width="*" FontWeight="DemiBold" Binding="{Binding Path=ScheduleItem.DepartureTime, Converter={StaticResource DateConverter}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Од" FontSize="15" MinWidth="100" Width="*" FontWeight="DemiBold" Binding="{Binding Path=ScheduleItem.TrainLine.DeparturePlace}"></DataGridTextColumn>
+                <DataGridTextColumn Header="До" FontSize="15" MinWidth="100" Width="*" FontWeight="DemiBold" Binding="{Binding Path=ScheduleItem.TrainLine.ArrivalPlace}"></DataGridTextColumn>
                 <DataGridCheckBoxColumn  Header="Плаћено" MinWidth="95" Width="auto" Binding="{Binding Path=Paid}"></DataGridCheckBoxColumn>
-                <DataGridTextColumn Header="Цена" FontSize="15" MinWidth="60" Width="auto" Binding="{Binding Path=SearchResultItem.Price}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Цена" FontSize="15" MinWidth="60" Width="auto" Binding="{Binding Path=ScheduleItem.Price}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Време" FontSize="15" MinWidth="150" Width="*" FontWeight="ExtraLight" Binding="{Binding Path=TimeStamp, Converter={StaticResource DateConverter}}"/>
             </DataGrid.Columns>
         </DataGrid>
