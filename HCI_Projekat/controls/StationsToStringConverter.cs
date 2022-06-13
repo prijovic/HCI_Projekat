@@ -21,7 +21,7 @@ namespace HCI_Projekat.controls
                 DateTime dateTime = station.Time;
                 result += $"{AddZero(dateTime.Day)}.{AddZero(dateTime.Month)}.{AddZero(dateTime.Year)}. {AddZero(dateTime.Hour)}:{AddZero(dateTime.Minute)}";
                 result += " • ";
-                result += station.Station.Name + $"({station.Price} РСД)"+ "\n";
+                result += station.Station.Name + (station.Price != 0? $"({station.Price} РСД)": "")  + "\n";
                 result += "                               ↓\n";
             }
             result = result.Remove(result.LastIndexOf('\n'));

@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace HCI_Projekat.model
 {
-    public class ScheduleItem : INotifyPropertyChanged
+    public class ScheduleItem : INotifyPropertyChanged, IComparable<ScheduleItem>
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -20,9 +20,49 @@ namespace HCI_Projekat.model
 
         private TrainLine _trainLine;
         private DateTime _departureTime;
+
+        internal Station GetStationByName(string name)
+        {
+            return TrainLine.GetStationByName(name);
+        }
+
+        internal DateTime GetDepartureTimeByStationName(string name)
+        {
+            Station station = TrainLine.GetStationByName(name);
+            if (TrainLine.DeparturePlace.Name == name) { return DepartureTime; }
+            if (TrainLine.ArrivalPlace.Name == name) { return ArrivalTime; }
+            return (StationArrivals.ElementAt(TrainLine.GetIndexOfStationByName(station))).Time;
+        }
+
+        internal double GetPrice(Station departurePlace, Station arrivalPlace)
+        {
+            return GetPriceByStation(arrivalPlace) - GetPriceByStation(departurePlace);
+        }
+
+        internal double GetPriceByStation(Station station)
+        {
+            if (TrainLine.DeparturePlace == station) { return 0; }
+            if (TrainLine.ArrivalPlace == station) { return Price; }
+            foreach (StationArrival stationArrival in StationArrivals)
+            {
+                if (stationArrival.Station == station)
+                {
+                    return stationArrival.Price;
+                }
+            }
+            return 0;
+        }
+
+        internal TimeSpan GetTripDuration(Station departurePlace, Station arrivalPlace)
+        {
+            return GetDepartureTimeByStationName(arrivalPlace.Name).Subtract(GetDepartureTimeByStationName(departurePlace.Name));
+        }
+
         private DateTime _arrivalTime;
         private Train _train;
         private double _price;
+        private double _stationPrice;
+        private DateTime _stationTime;
         public ObservableCollection<StationArrival> _arrivals;
         public List<StationArrival> StationArrivals { get; set; } = new List<StationArrival>();
 
@@ -57,6 +97,15 @@ namespace HCI_Projekat.model
         public void UpdateArrivals()
         {
             Arrivals = new ObservableCollection<StationArrival>(StationArrivals);
+        }
+
+        public int CompareTo(ScheduleItem other)
+        {
+            if (other == null)
+            {
+                return 1;
+            }
+            return DepartureTime.CompareTo(other.DepartureTime);
         }
 
         public ObservableCollection<StationArrival> Arrivals
@@ -153,6 +202,48 @@ namespace HCI_Projekat.model
                     OnPropertyChanged("Price");
                 }
             }
+        }
+
+        public double StationPrice
+        {
+            get
+            {
+                return _stationPrice;
+            }
+            set
+            {
+                if(value != _stationPrice)
+                {
+                    _stationPrice = value;
+                    OnPropertyChanged("StationPrice");
+                }
+            }
+        }
+
+        public DateTime StationTime
+        {
+            get
+            {
+                return _stationTime;
+            }
+            set
+            {
+                if(value != _stationTime)
+                {
+                    _stationTime = value;
+                    OnPropertyChanged("StationTime");
+                }
+            }
+        }
+
+        public bool ConstainsStation(Station station)
+        {
+            return TrainLine.ContainsStation(station);
+        }
+
+        public bool IsStationAfter(Station s1, Station s2)
+        {
+            return TrainLine.IsStationAfter(s1, s2);
         }
 
     }

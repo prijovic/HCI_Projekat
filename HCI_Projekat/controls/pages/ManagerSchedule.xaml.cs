@@ -159,7 +159,7 @@ namespace HCI_Projekat.controls.pages
         {
             window = new NewScheduleItemWindow();
             window.OnCloseHandler += ActivateAddButton;
-            //window.TrainLineAdded += AddTrainLine;
+            window.OnScheduleItemAdded += AddScheduleItem;
             window.Show();
             AddButton.IsEnabled = false;
         }
@@ -167,6 +167,12 @@ namespace HCI_Projekat.controls.pages
         private void ActivateAddButton()
         {
             AddButton.IsEnabled = true;
+        }
+
+        private void AddScheduleItem(ScheduleItem scheduleItem)
+        {
+            ScheduleItems.Add(scheduleItem);
+            itemService.AddScheduleItem(scheduleItem);
         }
     }
 }
