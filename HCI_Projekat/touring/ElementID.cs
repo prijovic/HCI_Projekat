@@ -30,5 +30,10 @@ namespace HCI_Projekat.touring
         public static readonly string ArrivalStationTime = "ArrivalStationTime";
         public static readonly string TextBoxPartialPrice = "TextBoxPartialPrice";
         public static readonly string BtnAddScheduleItem = "BtnAddScheduleItem";
+
+        public static readonly string SearchDeparturePlace = "SearchDeparturePlace";
+        public static readonly string SearchArrivalPlace = "SearchArrivalPlace";
+        public static readonly string SearchDepartureDate = "SearchDepartureDate";
+        public static readonly string BtnSearch = "BtnSearch";
     }
 }
