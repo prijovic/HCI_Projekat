@@ -1,9 +1,11 @@
 ﻿<Window x:Class="HCI_Projekat.controls.NewTrainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:featureTouring="clr-namespace:ThinkSharp.FeatureTouring;assembly=ThinkSharp.FeatureTour"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Projekat.controls"
+        xmlns:app="clr-namespace:HCI_Projekat.touring"
         mc:Ignorable="d"
         Title="Додавање воза"
         Icon="../icon.ico"
@@ -15,12 +17,21 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="35,0,0,0" FontSize="20" Foreground="{StaticResource white}" FontWeight="DemiBold">Шифра воза</Label>
-            <TextBox Text="{Binding Path=Code}" HorizontalAlignment="Left" FontWeight="Bold" MinWidth="350" VerticalAlignment="Center" Width="auto" Margin="15,0,10,10"></TextBox>
+            <TextBox x:Name="TextTrainCode" Text="{Binding Path=Code}" HorizontalAlignment="Left" FontWeight="Bold" MinWidth="350" VerticalAlignment="Center" Width="auto" Margin="15,0,10,10"
+                     featureTouring:TourHelper.Placement="RightCenter"
+                     featureTouring:TourHelper.ElementID="{x:Static app:ElementID.TextBoxTrainCode}"></TextBox>
             <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="35,0,0,0" FontSize="20" Foreground="{StaticResource white}" FontWeight="DemiBold">Име воза</Label>
-            <TextBox Text="{Binding Path=TrainName}" HorizontalAlignment="Left" FontWeight="Bold" MinWidth="350" VerticalAlignment="Center" Width="auto" Margin="15,0,10,10"></TextBox>
+            <TextBox x:Name="TextTrainName" Text="{Binding Path=TrainName}" HorizontalAlignment="Left" FontWeight="Bold" MinWidth="350" VerticalAlignment="Center" Width="auto" Margin="15,0,10,10"
+                     featureTouring:TourHelper.Placement="RightCenter"
+                     featureTouring:TourHelper.ElementID="{x:Static app:ElementID.TextBoxTrainName}"></TextBox>
             <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="35,0,0,0" FontSize="20" Foreground="{StaticResource white}" FontWeight="DemiBold">Капацитет</Label>
-            <TextBox Text="{Binding Path=Capacity}" HorizontalAlignment="Left" FontWeight="Bold" MinWidth="350" VerticalAlignment="Center" Width="auto" Margin="15,0,10,10"></TextBox>
-            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ClassicButton}" Click="Add_Click">Додај</Button>
+            <TextBox x:Name="TextTrainCapacity" Text="{Binding Path=Capacity}" HorizontalAlignment="Left" FontWeight="Bold" MinWidth="350" VerticalAlignment="Center" Width="auto" Margin="15,0,10,10"
+                     featureTouring:TourHelper.Placement="RightCenter"
+                     featureTouring:TourHelper.ElementID="{x:Static app:ElementID.TextBoxTrainCapacity}"></TextBox>
+            <Button x:Name="ButtonAddTrain" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ClassicButton}" Click="Add_Click"
+                    featureTouring:TourHelper.Placement="RightCenter"
+                    featureTouring:TourHelper.ElementID="{x:Static app:ElementID.BtnAddNewTrain}">Додај</Button>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ClassicButton}" Click="Btn_Train_Tutorial_Click">Покрени туториал</Button>
         </StackPanel>
     </Grid>
 </Window>

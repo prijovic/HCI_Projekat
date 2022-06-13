@@ -60,6 +60,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="ThinkSharp.FeatureTour, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Thinksharp.FeatureTour.2.1.0\lib\net40\ThinkSharp.FeatureTour.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -137,6 +140,7 @@
     <Compile Include="controls\TimeSpanConverter.cs" />
     <Compile Include="controls\TrainToStringConverter.cs" />
     <Compile Include="controls\YesNoConverter.cs" />
+    <Compile Include="CustomTourViewModel.cs" />
     <Compile Include="model\SearchResultItem.cs" />
     <Compile Include="model\Station.cs" />
     <Compile Include="model\StationArrival.cs" />
@@ -146,6 +150,7 @@
     <Compile Include="services\TrainLineService.cs" />
     <Compile Include="services\TrainService.cs" />
     <Compile Include="services\UserService.cs" />
+    <Compile Include="touring\ElementID.cs" />
     <Page Include="controls\ClientNetworkWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

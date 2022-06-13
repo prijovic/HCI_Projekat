@@ -1,9 +1,11 @@
 ﻿<Window x:Class="HCI_Projekat.controls.NewTrainLineWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:featureTouring="clr-namespace:ThinkSharp.FeatureTouring;assembly=ThinkSharp.FeatureTour"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Projekat.controls"
+        xmlns:app="clr-namespace:HCI_Projekat.touring"
         mc:Ignorable="d"
         Icon="../icon.ico"
         Title="Додавање возне линије" MinHeight="650" MinWidth="800" Closed="Window_Closed">
@@ -21,13 +23,22 @@
         </Grid.RowDefinitions>
         <StackPanel HorizontalAlignment="Center">
             <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="35,0,0,0" FontSize="20" Foreground="{StaticResource white}" FontWeight="DemiBold">Шифра линије</Label>
-            <TextBox Text="{Binding Path=Code}" HorizontalAlignment="Left" FontWeight="Bold" MinWidth="300" VerticalAlignment="Center" Width="auto" Margin="15,0,10,10"></TextBox>
+            <TextBox x:Name="CodeTrain" Text="{Binding Path=Code}" HorizontalAlignment="Left" FontWeight="Bold" MinWidth="300" VerticalAlignment="Center" Width="auto" Margin="15,0,10,10"
+                     featureTouring:TourHelper.Placement="RightCenter"
+                     featureTouring:TourHelper.ElementID="{x:Static app:ElementID.TextBoxCode}"></TextBox>
             <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="35,0,0,0" FontSize="20" Foreground="{StaticResource white}" FontWeight="DemiBold">Полазиште</Label>
-            <TextBox Text="{Binding Path=DeparturePlace}" HorizontalAlignment="Left" FontWeight="Bold" Width="auto" MinWidth="300" VerticalAlignment="Center" Margin="15,0,10,10"></TextBox>
+            <TextBox x:Name="TrainDeparturePlace" Text="{Binding Path=DeparturePlace}" HorizontalAlignment="Left" FontWeight="Bold" Width="auto" MinWidth="300" VerticalAlignment="Center" Margin="15,0,10,10"
+                     featureTouring:TourHelper.Placement="RightCenter"
+                     featureTouring:TourHelper.ElementID="{x:Static app:ElementID.TextBoxDeparturePlace}"></TextBox>
             <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="35,0,0,0" FontSize="20" Foreground="{StaticResource white}" FontWeight="DemiBold">Одредиште</Label>
-            <TextBox Text="{Binding Path=ArrivalPlace}" HorizontalAlignment="Left" FontWeight="Bold" MinWidth="300" VerticalAlignment="Center" Width="auto" Margin="15,0,10,10"></TextBox>
+            <TextBox x:Name="TrainArrivalPlace" Text="{Binding Path=ArrivalPlace}" HorizontalAlignment="Left" FontWeight="Bold" MinWidth="300" VerticalAlignment="Center" Width="auto" Margin="15,0,10,10"
+                     featureTouring:TourHelper.Placement="RightCenter"
+                     featureTouring:TourHelper.ElementID="{x:Static app:ElementID.TextBoxArrivalPlace}"></TextBox>
         </StackPanel>
-        <Button Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" x:Name="AddButton" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Style="{StaticResource ClassicButton}" Click="AddButton_Click">Додај линију</Button>
+        <Button Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" x:Name="AddButton" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Style="{StaticResource ClassicButton}" Click="AddButton_Click"
+                featureTouring:TourHelper.Placement="RightCenter"
+                featureTouring:TourHelper.ElementID="{x:Static app:ElementID.BtnAddTrainLine}">Додај линију</Button>
+        <Button Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Style="{StaticResource ClassicButton}" Click="Btn_Train_Line_Tutorial_Click">Покрени туториал</Button>
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -50,7 +61,9 @@
             <StackPanel Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="35,0,0,0" FontSize="20" Foreground="{StaticResource white}" FontWeight="DemiBold">Станица</Label>
                 <TextBox Text="{Binding ElementName=stations, Path=SelectedItem}" Focusable="False" IsReadOnly="True" HorizontalAlignment="Left" FontWeight="Bold" Width="148" VerticalAlignment="Center" Margin="0,0,0,10"></TextBox>
-                <Button x:Name="AddButtonStation" Width="148" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5" Style="{StaticResource ClassicButton}" Click="AddButtonStation_Click">Додај станицу</Button>
+                <Button x:Name="AddButtonStation" Width="148" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5" Style="{StaticResource ClassicButton}" Click="AddButtonStation_Click"
+                        featureTouring:TourHelper.Placement="LeftCenter"
+                     featureTouring:TourHelper.ElementID="{x:Static app:ElementID.BtnAddNewStation}">Додај станицу</Button>
                 <Button x:Name="DeleteButtonStation" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource RedButton}" Click="DeleteButtonStation_Click">Обриши станицу</Button>
             </StackPanel>
         </Grid>

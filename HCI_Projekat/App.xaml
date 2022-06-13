@@ -5,6 +5,7 @@
              xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
     xmlns:local1="clr-namespace:HCI_Projekat.controls"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:Themes1="clr-namespace:Xceed.Wpf.Toolkit.Themes;assembly=Xceed.Wpf.Toolkit"
+             xmlns:controls="clr-namespace:ThinkSharp.FeatureTouring.Controls;assembly=ThinkSharp.FeatureTour"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <SolidColorBrush x:Key="red" Color="#F90101"/>
@@ -950,6 +951,15 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+
+        <Style TargetType="controls:TourControl">
+            <Setter Property="Background" Value="white"/>
+            <Setter Property="Foreground" Value="blue"/>
+            <Setter Property="BorderBrush" Value="#747CB1" />
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
         </Style>
 
     </Application.Resources>

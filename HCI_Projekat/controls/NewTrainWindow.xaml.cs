@@ -1,5 +1,6 @@
 ﻿using HCI_Projekat.model;
 using HCI_Projekat.services;
+using HCI_Projekat.touring;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,6 +15,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ThinkSharp.FeatureTouring.Models;
+using ThinkSharp.FeatureTouring.Navigation;
 
 namespace HCI_Projekat.controls
 {
@@ -55,6 +58,74 @@ namespace HCI_Projekat.controls
         private void Window_Closed(object sender, EventArgs e)
         {
             OnCloseHandler?.Invoke();
+        }
+
+        public static void StartAddTrainTour()
+        {
+            var tour = new Tour
+            {
+                Name = "New train tour",
+                ShowNextButtonDefault = true,
+                Steps = new[]
+                {
+                    new Step(ElementID.TextBoxTrainCode, "Унесите шифру воза", "Нпр. \"AF345\""),
+                    new Step(ElementID.TextBoxTrainName, "Унесите назив воза", "Нпр. \"Regio1\""),
+                    new Step(ElementID.TextBoxTrainCapacity, "Унесите капацитет воза", "Нпр. 200"),
+                    new Step(ElementID.BtnAddNewTrain, "Додај воз", "Притисните дугме да додате воз..")
+                }
+            };
+            tour.Start();
+        }
+
+        private void Btn_Train_Tutorial_Click(object sender, RoutedEventArgs e)
+        {
+            FeatureTour.SetViewModelFactoryMethod(tourRun => new CustomTourViewModel(tourRun));
+            var navigator = FeatureTour.GetNavigator();
+
+            navigator.OnStepEntered(ElementID.TextBoxTrainCode).Execute(s => TextTrainCode.Focus());
+            navigator.OnStepEntered(ElementID.TextBoxTrainName).Execute(s => TextTrainName.Focus());
+            navigator.OnStepEntered(ElementID.TextBoxTrainCapacity).Execute(s => TextTrainCapacity.Focus());
+            navigator.OnStepEntered(ElementID.BtnAddNewTrain).Execute(s => ButtonAddTrain.Focus());
+
+            TextTrainCode.TextChanged += trainCodeTextChanged;
+            TextTrainName.TextChanged += trainNameTextChanged;
+            TextTrainCapacity.TextChanged += trainCapacityTextChanged;
+            ButtonAddTrain.Click += addClicked;
+
+            StartAddTrainTour();
+        }
+
+        private void addClicked(object sender, RoutedEventArgs e)
+        {
+            var navigator = FeatureTour.GetNavigator();
+            navigator.IfCurrentStepEquals(ElementID.BtnAddNewTrain).Close();
+        }
+
+        private void trainCodeTextChanged(object sender, RoutedEventArgs e)
+        {
+            if (Code != null && Code != "")
+            {
+                var navigator = FeatureTour.GetNavigator();
+                navigator.IfCurrentStepEquals(ElementID.TextBoxTrainCode).GoNext();
+            }
+        }
+
+        private void trainNameTextChanged(object sender, RoutedEventArgs e)
+        {
+            if (TrainName != null && TrainName != "")
+            {
+                var navigator = FeatureTour.GetNavigator();
+                navigator.IfCurrentStepEquals(ElementID.TextBoxTrainName).GoNext();
+            }
+        }
+
+        private void trainCapacityTextChanged(object sender, RoutedEventArgs e)
+        {
+            if (Capacity != 0)
+            {
+                var navigator = FeatureTour.GetNavigator();
+                navigator.IfCurrentStepEquals(ElementID.TextBoxTrainCapacity).GoNext();
+            }
         }
     }
 }
