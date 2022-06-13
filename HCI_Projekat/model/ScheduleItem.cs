@@ -61,6 +61,8 @@ namespace HCI_Projekat.model
         private DateTime _arrivalTime;
         private Train _train;
         private double _price;
+        private double _stationPrice;
+        private DateTime _stationTime;
         public ObservableCollection<StationArrival> _arrivals;
         public List<StationArrival> StationArrivals { get; set; } = new List<StationArrival>();
 
@@ -198,6 +200,38 @@ namespace HCI_Projekat.model
                 {
                     _price = value;
                     OnPropertyChanged("Price");
+                }
+            }
+        }
+
+        public double StationPrice
+        {
+            get
+            {
+                return _stationPrice;
+            }
+            set
+            {
+                if(value != _stationPrice)
+                {
+                    _stationPrice = value;
+                    OnPropertyChanged("StationPrice");
+                }
+            }
+        }
+
+        public DateTime StationTime
+        {
+            get
+            {
+                return _stationTime;
+            }
+            set
+            {
+                if(value != _stationTime)
+                {
+                    _stationTime = value;
+                    OnPropertyChanged("StationTime");
                 }
             }
         }
