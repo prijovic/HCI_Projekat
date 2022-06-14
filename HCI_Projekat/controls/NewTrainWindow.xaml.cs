@@ -51,8 +51,20 @@ namespace HCI_Projekat.controls
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             Train newTrain = new Train(TrainName, Code, Capacity);
-            trainService.AddTrain(newTrain);
-            OnTrainAdded(newTrain);
+            MessageBoxResult messageBoxResult = MessageBox.Show($"Желите ли да додате воз '{TrainName}'?", "Потврда додавања воза", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    trainService.AddTrain(newTrain);
+                    OnTrainAdded(newTrain);
+                    MessageBox.Show($"Успешно сте додали воз '{TrainName}'.", "Успешно додавање воза", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show($"Дошло је до грешке. Покушајте поново...", "Неуспешно додавање воза", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void Window_Closed(object sender, EventArgs e)
