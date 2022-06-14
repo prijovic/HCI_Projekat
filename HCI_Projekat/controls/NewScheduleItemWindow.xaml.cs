@@ -149,7 +149,19 @@ namespace HCI_Projekat.controls
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             ScheduleItem scheduleItem = new ScheduleItem(TrainLine, DepartureTime, ArrivalTime, StationsTime.ToArray(), Train, Price, Prices.ToArray());
-            OnScheduleItemAdded?.Invoke(scheduleItem);
+            MessageBoxResult messageBoxResult = MessageBox.Show($"Желите ли да додате ставку реда вожње за релацију {TrainLine.DeparturePlace.Name} - {TrainLine.ArrivalPlace.Name} ({DepartureTime})?", "Потврда додавања ставке реда вожње", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    OnScheduleItemAdded?.Invoke(scheduleItem);
+                    MessageBox.Show($"Успешно сте додали ставку реда вожње за релацију {TrainLine.DeparturePlace.Name} - {TrainLine.ArrivalPlace.Name} ({DepartureTime}).", "Успешно додавање ставке реда вожње", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show($"Дошло је до грешке. Покушајте поново...", "Неуспешно додавање ставке реда вожње", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         public static void StartAddScheduleItemTour()

@@ -63,7 +63,19 @@ namespace HCI_Projekat.controls
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             TrainLine trainLine = new TrainLine(Code, DeparturePlace, ArrivalPlace, Stations.ToArray());
-            TrainLineAdded?.Invoke(trainLine);
+            MessageBoxResult messageBoxResult = MessageBox.Show($"Желите ли да додате возну линију {DeparturePlace} - {ArrivalPlace}?", "Потврда додавања возне линије", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    TrainLineAdded?.Invoke(trainLine);
+                    MessageBox.Show($"Успешно сте додали возну линију {DeparturePlace} - {ArrivalPlace}.", "Успешно додавање возне линија", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show($"Дошло је до грешке. Покушајте поново...", "Неуспешно додавање возне линија", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void Stations_SelectionChanged(object sender, SelectionChangedEventArgs e)
