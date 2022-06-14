@@ -112,8 +112,8 @@ namespace HCI_Projekat.controls
             Prices = new ObservableCollection<double>(new List<double>(TrainLine.Stations.Count));
             TrainLine.Stations.ForEach(s => {
                 station.Items.Add(s);
-                StationsTime.Add(default);
-                Prices.Add(default);
+                StationsTime.Add(default(DateTime));
+                Prices.Add(default(double));
             });
         }
 

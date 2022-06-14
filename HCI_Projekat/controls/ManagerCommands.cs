@@ -16,5 +16,6 @@ namespace HCI_Projekat.controls
         public static readonly RoutedUICommand Network = new RoutedUICommand("Мрежа линија", "Мрежа линија", typeof(ManagerPage), new InputGestureCollection() { new KeyGesture(Key.M, ModifierKeys.Control | ModifierKeys.Alt) });
         public static readonly RoutedUICommand Logout = new RoutedUICommand("Одјави се", "Одјави се", typeof(ManagerPage), new InputGestureCollection() { new KeyGesture(Key.Escape, ModifierKeys.Control | ModifierKeys.Alt) });
         public static readonly RoutedUICommand Home = new RoutedUICommand("Почетна страница", "Почетна страница", typeof(ManagerPage), new InputGestureCollection() { new KeyGesture(Key.Home, ModifierKeys.Control | ModifierKeys.Alt) });
+        public static readonly RoutedUICommand TrainTutorial = new RoutedUICommand("Туторијал воз", "Туторијал воз", typeof(ManagerPage), new InputGestureCollection() {});
     }
 }

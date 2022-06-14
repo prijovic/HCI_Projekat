@@ -77,24 +77,6 @@ namespace HCI_Projekat.controls
             tour.Start();
         }
 
-        private void Btn_Train_Tutorial_Click(object sender, RoutedEventArgs e)
-        {
-            FeatureTour.SetViewModelFactoryMethod(tourRun => new CustomTourViewModel(tourRun));
-            var navigator = FeatureTour.GetNavigator();
-
-            navigator.OnStepEntered(ElementID.TextBoxTrainCode).Execute(s => TextTrainCode.Focus());
-            navigator.OnStepEntered(ElementID.TextBoxTrainName).Execute(s => TextTrainName.Focus());
-            navigator.OnStepEntered(ElementID.TextBoxTrainCapacity).Execute(s => TextTrainCapacity.Focus());
-            navigator.OnStepEntered(ElementID.BtnAddNewTrain).Execute(s => ButtonAddTrain.Focus());
-
-            TextTrainCode.TextChanged += trainCodeTextChanged;
-            TextTrainName.TextChanged += trainNameTextChanged;
-            TextTrainCapacity.TextChanged += trainCapacityTextChanged;
-            ButtonAddTrain.Click += addClicked;
-
-            StartAddTrainTour();
-        }
-
         private void addClicked(object sender, RoutedEventArgs e)
         {
             var navigator = FeatureTour.GetNavigator();
@@ -126,6 +108,29 @@ namespace HCI_Projekat.controls
                 var navigator = FeatureTour.GetNavigator();
                 navigator.IfCurrentStepEquals(ElementID.TextBoxTrainCapacity).GoNext();
             }
+        }
+
+        private void Tutorial_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            FeatureTour.SetViewModelFactoryMethod(tourRun => new CustomTourViewModel(tourRun));
+            var navigator = FeatureTour.GetNavigator();
+
+            navigator.OnStepEntered(ElementID.TextBoxTrainCode).Execute(s => TextTrainCode.Focus());
+            navigator.OnStepEntered(ElementID.TextBoxTrainName).Execute(s => TextTrainName.Focus());
+            navigator.OnStepEntered(ElementID.TextBoxTrainCapacity).Execute(s => TextTrainCapacity.Focus());
+            navigator.OnStepEntered(ElementID.BtnAddNewTrain).Execute(s => ButtonAddTrain.Focus());
+
+            TextTrainCode.TextChanged += trainCodeTextChanged;
+            TextTrainName.TextChanged += trainNameTextChanged;
+            TextTrainCapacity.TextChanged += trainCapacityTextChanged;
+            ButtonAddTrain.Click += addClicked;
+
+            StartAddTrainTour();
+        }
+
+        private void Tutorial_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
         }
     }
 }
