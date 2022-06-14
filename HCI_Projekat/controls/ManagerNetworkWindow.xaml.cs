@@ -77,5 +77,10 @@ namespace HCI_Projekat.controls
         {
             ClosedWindow?.Invoke();
         }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("ManagerNetworkWindow", this);
+        }
     }
 }

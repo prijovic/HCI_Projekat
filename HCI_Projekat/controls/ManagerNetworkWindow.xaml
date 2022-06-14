@@ -9,6 +9,9 @@
     <Window.Background>
         <ImageBrush ImageSource="/assets/cover_image-overlay.jpg"></ImageBrush>
     </Window.Background>
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>

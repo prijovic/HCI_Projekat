@@ -39,5 +39,25 @@ namespace HCI_Projekat
             mainPage.Content = new RegistrationPage(ref userService, ref trainLineService, ref ticketService, ref scheduleItemService, ref trainService);
         }
 
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            var page = mainPage.Content;
+            if (typeof(ClientPage) == page.GetType())
+            {
+                HelpProvider.ShowHelp((((ClientPage)page).clientPage.Content as Page).Title, this);
+            }
+            if (typeof(ManagerPage) == page.GetType())
+            {
+                HelpProvider.ShowHelp((((ManagerPage)page).managerPage.Content as Page).Title, this);
+            }
+            if (typeof(LoginPage) == page.GetType())
+            {
+                HelpProvider.ShowHelp((page as Page).Title, this);
+            }
+            if (typeof(RegistrationPage) == page.GetType())
+            {
+                HelpProvider.ShowHelp((page as Page).Title, this);
+            }
+        }
     }
 }

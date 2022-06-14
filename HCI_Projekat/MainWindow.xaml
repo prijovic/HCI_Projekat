@@ -10,6 +10,9 @@
         MinHeight="650"
         MinWidth="800"
         Style="{StaticResource AppWindow}">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
