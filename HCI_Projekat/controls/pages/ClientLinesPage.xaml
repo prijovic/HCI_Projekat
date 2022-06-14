@@ -56,7 +56,6 @@
                          featureTouring:TourHelper.Placement="RightCenter"
                          featureTouring:TourHelper.ElementID="{x:Static app:ElementID.BtnSearch}">Претражи</Button>
                 </Grid>
-                <Button Style="{StaticResource ClassicButton}" Click="Btn_Search_Tutorial_Click">Туториал</Button>
             </StackPanel>
         </Grid>
     </Grid>

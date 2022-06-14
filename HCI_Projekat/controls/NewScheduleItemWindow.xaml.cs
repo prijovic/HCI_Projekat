@@ -174,7 +174,7 @@ namespace HCI_Projekat.controls
             tour.Start();
         }
 
-        private void Btn_Schedule_Item_Tutorial_Click(object sender, RoutedEventArgs e)
+        private void Tutorial_Executed(object sender, RoutedEventArgs e)
         {
             FeatureTour.SetViewModelFactoryMethod(tourRun => new CustomTourViewModel(tourRun));
 
@@ -202,6 +202,11 @@ namespace HCI_Projekat.controls
             AddButton.Click += btnAddScheduleItemClicked;
 
             StartAddScheduleItemTour();
+        }
+
+        private void Tutorial_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
         }
 
         private void btnAddScheduleItemClicked(object sender, RoutedEventArgs e)

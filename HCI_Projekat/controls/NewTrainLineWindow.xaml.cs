@@ -146,7 +146,7 @@ namespace HCI_Projekat.controls
             tour.Start();
         }
 
-        private void Btn_Train_Line_Tutorial_Click(object sender, RoutedEventArgs e)
+        private void Tutorial_Executed(object sender, RoutedEventArgs e)
         {
             FeatureTour.SetViewModelFactoryMethod(tourRun => new CustomTourViewModel(tourRun));
             stationInputDialog = new StationInputDialog();
@@ -170,6 +170,11 @@ namespace HCI_Projekat.controls
             AddButton.Click += addClicked;
 
             StartAddTrainLineTour();
+        }
+
+        private void Tutorial_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
         }
 
         private void addClicked(object sender, RoutedEventArgs e)

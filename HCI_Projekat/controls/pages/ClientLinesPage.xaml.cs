@@ -118,7 +118,7 @@ namespace HCI_Projekat.controls.pages
             tour.Start();
         }
 
-        private void Btn_Search_Tutorial_Click(object sender, RoutedEventArgs e)
+        private void Tutorial_Executed(object sender, RoutedEventArgs e)
         {
             FeatureTour.SetViewModelFactoryMethod(tourRun => new CustomTourViewModel(tourRun));
             var navigator = FeatureTour.GetNavigator();
@@ -135,6 +135,11 @@ namespace HCI_Projekat.controls.pages
             searchButton.Click += searchClicked;
 
             StartSearchTour();
+        }
+
+        private void Tutorial_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
         }
 
         private void searchClicked(object sender, RoutedEventArgs e)
