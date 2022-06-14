@@ -1,0 +1,62 @@
+﻿<Page x:Class="HCI_Projekat.controls.pages.ClientLinesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:featureTouring="clr-namespace:ThinkSharp.FeatureTouring;assembly=ThinkSharp.FeatureTour"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HCI_Projekat.controls.pages"
+      xmlns:app="clr-namespace:HCI_Projekat.touring"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="800"
+      Title="ClientMainPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" MaxWidth="600">
+            <StackPanel VerticalAlignment="Center">
+                <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,40" FontSize="25" Foreground="{StaticResource white}" FontWeight="DemiBold">Претрага реда вожње</Label>
+                <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="35,0,0,0" FontSize="20" Foreground="{StaticResource white}" FontWeight="DemiBold">Полазиште</Label>
+                <ComboBox SelectionChanged="DeparturePlace_SelectionChanged" SelectedItem="{Binding Path=DepartureStation}" x:Name="departurePlace" IsEditable="False" Margin="15,0,10,10" FontSize="15"
+                     featureTouring:TourHelper.Placement="RightCenter"
+                     featureTouring:TourHelper.ElementID="{x:Static app:ElementID.SearchDeparturePlace}"></ComboBox>
+                <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="35,0,0,0" FontSize="20" Foreground="{StaticResource white}" FontWeight="DemiBold">Одредиште</Label>
+                <ComboBox SelectionChanged="ArrivalPlace_SelectionChanged" SelectedItem="{Binding Path=ArrivalStation}" x:Name="arrivalPlace" IsEditable="False" Margin="15,0,10,10" FontSize="15"
+                     featureTouring:TourHelper.Placement="RightCenter"
+                     featureTouring:TourHelper.ElementID="{x:Static app:ElementID.SearchArrivalPlace}"></ComboBox>
+                <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="35,0,0,0" FontSize="20" Foreground="{StaticResource white}">Датум поласка</Label>
+                <DatePicker SelectedDateChanged="Datepicker_SelectedDateChanged" SelectedDate="{Binding Path=DepartureDate}" x:Name="datepicker" FirstDayOfWeek="Monday" IsTodayHighlighted="True" SelectedDateFormat="Short" CalendarStyle="{StaticResource resizedCalendarItem}" Margin="15,0,10,10" Background="White"
+                     featureTouring:TourHelper.Placement="RightCenter"
+                     featureTouring:TourHelper.ElementID="{x:Static app:ElementID.SearchDepartureDate}">
+                    <DatePicker.Resources>
+                        <Style TargetType="DatePickerTextBox">
+                            <Setter Property="IsReadOnly" Value="True"/>
+                            <Setter Property="Text" Value="Одаберите датум поласка"/>
+                            <Setter Property="Focusable" Value="False"/>
+                            <Setter Property="IsEnabled" Value="False"/>
+                            <Setter Property="IsHitTestVisible" Value="False"/>
+                        </Style>
+                    </DatePicker.Resources>
+                </DatePicker>
+                <Grid Margin="0, 35, 0, 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="clearButton" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,7,0" VerticalAlignment="Center" Style="{StaticResource ClassicButton}" Click="Clear_Click">Обриши</Button>
+                    <Button x:Name="searchButton" Grid.Column="1" HorizontalAlignment="Left" Margin="8,0,0,0" VerticalAlignment="Center"  Style="{StaticResource RedButton}" Click="SearchButton_Click"
+                         featureTouring:TourHelper.Placement="RightCenter"
+                         featureTouring:TourHelper.ElementID="{x:Static app:ElementID.BtnSearch}">Претражи</Button>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
