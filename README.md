@@ -12,8 +12,8 @@ Projekat se pokreće iz Visual Studia 2017+.
 
 Logovanje:
 - Menadzer: 
- - username: **admin**
- - password: **admin**
-- Korisnik: 
- - username: **doe**
- - password: **doe**
+<br />- username:&emsp;**admin**
+<br />- password:&emsp;**admin**
+- Kupac: 
+<br />- username:&emsp;**doe**
+<br />- password:&emsp;**doe**
